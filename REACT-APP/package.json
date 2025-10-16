@@ -6,7 +6,7 @@
     "start":"parcel index.html --open",
     "test": "test"
   },
-  "author": "Shivansh lavaniya",
+  "author": "Sachin Baranwal",
   "license": "ISC",
   "dependencies": {
     "parcel": "^2.16.0",
