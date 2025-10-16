@@ -1,33 +1,48 @@
-function Book() {
+const images = [
+  {
+    title: "Book 1",
+    imageURL:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMKj83FrUFU_vZlDO9Ncx0Opbw649p9EU4Pg&s",
+    price: 432,
+  },
+  {
+    title: "Book 2",
+    imageURL:
+      "https://vkpublications.com/cdn/shop/files/10-physics.jpg?v=1737447024&width=750",
+    price: 422,
+  },
+  {
+    title: "Book 3",
+    imageURL:
+      "https://www.wileyindia.com/pub/media/catalog/product/cache/20f980a1f90e8cec7a3c8f2cf40a32a8/9/7/9788126556021.jpg",
+    price: 411,
+  },
+];
+
+function Book({ title, imageURL, price }) {
   const image = React.createElement("img", {
-    src: "https://5.imimg.com/data5/HX/TD/MY-14344381/nootan-physics-xii-book-500x500.png",
+    src: imageURL,
     width: 250,
     height: 250,
     alt: "Physics Book Image",
   });
 
-  const h4 = React.createElement("h4", null, "Title: Physics");
-  const h3 = React.createElement("h3", null, "Price: ₹324/-");
+  const h4 = React.createElement("h4", null, `Title:  ${title}`);
+  const h3 = React.createElement("h3", null, `Price: ₹${price}`);
   const bt = React.createElement("button", null, "Add To Cart");
 
-  // A parent div that holds everything
-  const card = React.createElement(
-    "div",
-    {
-      className: "card",
-      style: {
-        textAlign: "center",
-        padding: "10px",
-        backgroundColor: "gold",
-        border: "1px solid gray",
-        borderRadius: "10px",
-        width: "270px",
-        margin: "20px auto",
-      },
-    },image,h4,h3,bt);
-  return card;
+  return React.createElement("div", { className: "card" }, image, h4, h3, bt);
 }
 
-// Render the component to the DOM
+function App() {
+  return React.createElement(
+    "div",
+    { className: "book-list" },
+    images.map((book, index) =>
+      React.createElement(Book, { ...book, key: index })
+    )
+  );
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(React.createElement(Book));
+root.render(React.createElement(App));
